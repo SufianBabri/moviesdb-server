@@ -2,7 +2,7 @@ const fs = require('fs')
 const logger = require('tracer').console({
 	transport: function (data) {
 		console.log(data.output);
-		fs.appendFile('logs/logfile.log', data.rawoutput + '\n', err => {
+		fs.appendFile('logs/logs.log', data.rawoutput + '\n', err => {
 			if (err) throw err;
 		});
 	}
