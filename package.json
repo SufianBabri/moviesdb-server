@@ -40,12 +40,13 @@
 	},
 	"devDependencies": {
 		"jest": "^25.5.4",
+		"nodemon": "^2.0.6",
 		"supertest": "^4.0.2"
 	},
 	"scripts": {
 		"test": "NODE_ENV=test jest --watchAll --verbose --runInBand",
 		"start": "NODE_ENV=production node index.js",
-		"dev": "NODE_ENV=development node index.js"
+		"dev": "NODE_ENV=development nodemon index.js"
 	},
 	"engines": {
 		"node": "12.14.1"
