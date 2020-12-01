@@ -8,5 +8,6 @@ module.exports = function () {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 		})
-		.then(() => logger.info('Connected to DB...'));
+		.then(() => logger.info('Connected to DB...'))
+		.catch((e) => logger.error('Failed to connect to DB', e));
 };
