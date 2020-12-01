@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const genres = require('../routes/genres');
 const customers = require('../routes/customers');
 const movies = require('../routes/movies');
@@ -9,6 +10,7 @@ const returns = require('../routes/returns');
 const error = require('../middleware/error');
 
 module.exports = function (app) {
+	app.use(cors);
 	app.use(express.json());
 	app.use('/api/genres', genres);
 	app.use('/api/customers', customers);
@@ -18,4 +20,4 @@ module.exports = function (app) {
 	app.use('/api/users', users);
 	app.use('/api/returns', returns);
 	app.use(error);
-}
+};
