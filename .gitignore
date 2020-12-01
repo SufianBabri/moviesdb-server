@@ -1,2 +1,4 @@
 node_modules/
 coverage/
+logs/logs.log
+logs/uncaughtExceptions.log
