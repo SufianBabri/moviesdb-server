@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
 		maxlength: 255,
 		validate: {
 			validator: (v) => {
-				return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+				return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
 			},
 			message: 'Invalid email address'
 		}
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
 	isAdmin: Boolean
 });
 userSchema.methods.generateAuthToken = function () {
-	const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, config.get("jwtPrivateKey"));
+	const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin }, config.get('jwtPrivateKey'));
 	return token;
 }
 const User = mongoose.model('User', userSchema);
