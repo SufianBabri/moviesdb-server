@@ -7,6 +7,8 @@ module.exports = function () {
 		.connect(db, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
+			useCreateIndex: true,
+			useFindAndModify: false,
 		})
 		.then(() => logger.info('Connected to DB...'))
 		.catch((e) => logger.error('Failed to connect to DB', e));
