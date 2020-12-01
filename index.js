@@ -1,4 +1,7 @@
 const express = require('express');
+const dotEnvFlow = require('dotenv-flow');
+
+dotEnvFlow.config();
 const app = express();
 
 const logger = require('./startup/logging').init(app);
