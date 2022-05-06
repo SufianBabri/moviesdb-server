@@ -26,4 +26,27 @@ router.post('/', auth, async (req, res) => {
 	);
 });
 
+router.delete('/:id', auth, async (req, res) => {
+	const movieId = req.params.id;
+	if (!mongoose.Types.ObjectId.isValid(movieId))
+		return res.status(404).send('Invalid ID');
+
+	if (!(await Movie.findById(movieId)))
+		return res.status(404).send('Movie with given ID does not exist');
+
+	const userId = req.user._id;
+
+	const updateResult = await Favorite.updateOne(
+		{ userId },
+		{ $pull: { moviesIds: movieId } }
+	);
+	const movieNotInFavorites = updateResult.nModified === 0;
+
+	res.status(200).send(
+		movieNotInFavorites
+			? 'Movie not in favorites'
+			: 'Removed from favorites'
+	);
+});
+
 module.exports = router;
